@@ -1,14 +1,18 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
+const pausedLabel = document.getElementById("paused-label")
+
+const OFFSET_X = 0;
+const OFFSET_Y = 50;
 
 // Set canvas size
 ctx.canvas.width = window.innerWidth;
-ctx.canvas.height = window.innerHeight;
+ctx.canvas.height = window.innerHeight - OFFSET_Y;
 console.log("width", ctx.canvas.width);
 console.log("height", ctx.canvas.height);
 
 // Constants
-const CELL_SIZE = 30;
+const CELL_SIZE = 20;
 const GRID_WIDTH = Math.floor(ctx.canvas.width / CELL_SIZE);
 const GRID_HEIGHT = Math.floor(ctx.canvas.height / CELL_SIZE);
 console.log("grid width", GRID_WIDTH);
@@ -80,9 +84,10 @@ function randerCell(ctx, grid) {
 function cellOnClick(e, etype, grid) {
     if (pause === false) return;
     // console.log("mouse:", e.clientX, e.clientY)
-    let i = Math.floor(e.clientY / CELL_SIZE);
-    let j = Math.floor(e.clientX / CELL_SIZE);
-    // console.log(i, j)
+    let i = Math.floor((e.clientY - OFFSET_Y) / CELL_SIZE);
+    let j = Math.floor((e.clientX - OFFSET_X) / CELL_SIZE);
+    if (i < 0 || j < 0) return;
+    // console.log(i, j);
 
     if (etype === "mousemove") {
         if (mouseDown === false) return;
@@ -169,9 +174,11 @@ document.addEventListener("keydown", (e) => {
                 savedGrid = grid;
             }
             pause = false;
+            pausedLabel.textContent = "";
         } else {
             pause = true;
             console.log("pause");
+            pausedLabel.textContent = "PAUSED, press spacebar to begin";
         }
     } else if (e.code === "KeyN") { // New
         grid = createGrid();

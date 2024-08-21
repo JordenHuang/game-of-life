@@ -4,4 +4,47 @@ body {
   height: 100%;
   margin: 0;
   overflow: hidden;
+  font-family: monospace;
+}
+
+#info-btn {
+  position: fixed;
+  z-index: 2;
+  background-color: #dcdadade;
+  border: none;
+  border-radius: 8px;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: medium;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#info-btn:hover {
+  background-color: azure;
+}
+
+#paused-label {
+  height: 30px;
+  text-align: center;
+  font-size: xx-large;
+  color: white;
+  background-color: #101010;
+  padding: 10px 20px;
+}
+
+#info {
+  display: none;
+  position: absolute;
+  background-color: rgba(220, 220, 220, 0.8);
+  z-index: 999;
+  top: 50px;
+  width: inherit;
+  height: inherit;
+  font-size: xx-large;
+  line-height: 150%;
+  padding-left: 15%;
 }

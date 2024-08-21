@@ -7,6 +7,34 @@
     <link rel="stylesheet", href="style.css">
 </head>
 <body>
+    <button id="info-btn" onclick=showInfo()>Setting</button>
+    <div id="info", style="display:none">
+        <pre>
+            Conway's Game of Life
+            Hotkeys:
+            n: Restart
+            r: Restore
+            spacebar: Toggle pause
+            arrow up: Speed up
+            arrow down: Speed down
+
+            Author: Jorden Huang (黃淯祐)
+        </pre>
+    </div>
+
+    <div id="paused-label">PAUSED, press spacebar to begin</div>
+    <script>
+        function showInfo() {
+            const info = document.getElementById("info");
+            console.log(info.style.display)
+            if (info.style.display === "none") {
+                info.style.display = "block";
+            } else {
+                info.style.display = "none";
+            }
+        }
+    </script>
+
     <canvas id="myCanvas" width="300" height="200"></canvas>
     <script src="canvas.js"></script>
 </body>
